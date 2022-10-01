@@ -2,17 +2,21 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const InterpolateHtmlPlugin = require("interpolate-html-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const webpack = require("webpack");
 const path = require("path");
 const { dependencies } = require("./package.json");
 
 module.exports = {
-  entry: "./src/index",
+  entry: {
+    app: "./src/index",
+  },
   mode: "development",
   devServer: {
     static: {
       directory: path.join(__dirname, "public"),
     },
     port: 3001,
+    hot: false,
   },
   module: {
     rules: [
@@ -60,6 +64,7 @@ module.exports = {
       PUBLIC_URL: "static",
     }),
     new WebpackManifestPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
     extensions: [".js", ".jsx"],

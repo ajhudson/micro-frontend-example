@@ -1,11 +1,13 @@
 import React from "react";
+import { Container } from "@mui/material";
 import "./App.css";
+import TestCard from "./TestCard";
 
 function App() {
   return (
-    <div className="App">
-      <p>This is the micro app</p>
-    </div>
+    <Container>
+      <TestCard />
+    </Container>
   );
 }
 
