@@ -1,12 +1,12 @@
 import React from "react";
 import { Container } from "@mui/material";
+import TestCardForSecondMicroApp from "./TestCardForFirstSecondApp";
 import "./App.css";
-import TestCardForFirstMicroApp from "./TestCardForFirstMicroApp";
 
 function App() {
   return (
     <Container>
-      <TestCardForFirstMicroApp />
+      <TestCardForSecondMicroApp />
     </Container>
   );
 }

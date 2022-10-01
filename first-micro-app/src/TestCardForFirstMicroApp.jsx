@@ -8,7 +8,7 @@ import {
   Paper,
 } from "@mui/material";
 
-const TestCard = () => {
+const TestCardForFirstMicroApp = () => {
   return (
     <Paper elevation={2}>
       <Card sx={{ minWidth: 275 }}>
@@ -25,4 +25,4 @@ const TestCard = () => {
   );
 };
 
-export default TestCard;
+export default TestCardForFirstMicroApp;

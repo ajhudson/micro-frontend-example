@@ -2,13 +2,21 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const InterpolateHtmlPlugin = require("interpolate-html-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const webpack = require("webpack");
+const path = require("path");
 const { dependencies } = require("./package.json");
 
 module.exports = {
-  entry: "./src/index",
+  entry: {
+    app: "./src/index",
+  },
   mode: "development",
   devServer: {
-    port: 3000,
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    port: 3002,
+    hot: false,
   },
   module: {
     rules: [
@@ -32,10 +40,10 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "Host",
-      remotes: {
-        FirstMicroApp: `FirstMicroApp@http://localhost:3001/moduleEntry.js`,
-        SecondMicroApp: `SecondMicroApp@http://localhost:3002/moduleEntry.js`,
+      name: "SecondMicroApp",
+      filename: "moduleEntry.js",
+      exposes: {
+        "./App": "./src/App",
       },
       shared: {
         ...dependencies,
@@ -56,6 +64,7 @@ module.exports = {
       PUBLIC_URL: "static",
     }),
     new WebpackManifestPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
     extensions: [".js", ".jsx"],

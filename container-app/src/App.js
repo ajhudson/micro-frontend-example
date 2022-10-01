@@ -1,13 +1,15 @@
 import React from "react";
 import "./App.css";
-
-const RemoteApp = React.lazy(async () => import("FirstMicroApp/App"));
+import { Container } from "@mui/material";
+import MicroFrontendsContainer from "./MicroFrontendsContainer";
 
 function App() {
   return (
     <div className="App">
       <p>This is the container app</p>
-      <RemoteApp />
+      <Container>
+        <MicroFrontendsContainer />
+      </Container>
     </div>
   );
 }
